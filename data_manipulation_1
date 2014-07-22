@@ -1,0 +1,28 @@
+###collect data from multiple scv files and calculate select rows` column means
+
+pollutantmean <- function(directory, pollutant, id = 1:332) {
+## Below block import the data into a file calld "data", part 1
+        list <- list.files(path=directory)
+        data <- data.frame()
+        for (i in 1:332) {
+                data <- rbind(data,read.csv(paste(directory,list[i],sep="")))
+        }
+
+## Below block will choose the pollutant, either "sulfate" or "nitrate", part2
+        subdata <- data[,c("pollutant","ID")]
+
+## Below block will collect the monitor ID, part 3 & part 4
+        if (length(id) == 1) {
+                
+                selected <- subdata[subdata[,ID]==id]
+                mean <- colMeans(selected,na.rm=TRUE)
+        } else {
+                first <- id[1]
+                last <- tail(id, n=1)
+                for (j in first:last){
+                        
+                }
+        }
+                
+
+        print(mean)
