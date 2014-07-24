@@ -1,0 +1,25 @@
+#!/usr/bin/env python
+"""
+Calculate the average quality score for a given FASTQ file.
+
+if save the codes and named "meanqs"
+
+You can use this script from the shell like this:
+$ meanqs < *.fastq
+
+Need to install biopython first...
+"""
+# Calculate mean #
+def imean(numbers):
+    count = 0
+    total = 0
+    for num in numbers:
+        count += 1
+        total += num
+    return float(total)/count
+# Do it #
+import sys
+from Bio import SeqIO
+records = (r for r in SeqIO.parse(sys.stdin, "fastq"))
+scores = (s for r in records for s in r.letter_annotations["phred_quality"])
+print imean(scores)
