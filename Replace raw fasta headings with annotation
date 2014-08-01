@@ -1,0 +1,12 @@
+data_file = open("sampleData.txt")
+result_file = open ("result.txt","w")
+        for line in data_file:
+                if "abc" in line:
+                key=line.split(' ')[0]
+                key=key.split('>')[1]
+                        for line2 in open("dictionary.txt"):
+                                if key in line2:
+                                result_file.write(">"+line2)
+        else:
+                print line.strip('\n')
+result_file.write(line)
